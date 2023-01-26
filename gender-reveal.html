@@ -60,7 +60,7 @@
 		/>
 	</head>
 	<!-- #endregion head-->
-	<body>
+	<body class="single single-portfolio portfolio-details-right">
 		<!-- Page Wrapper -->
 		<div id="page" class="site">
 			<header id="masthead" class="site-header standard sticky" role="banner">
@@ -69,12 +69,12 @@
 						<a class="logo-brand" href="index.html">
 							<img
 								class="logo"
-								src="assets/images/logo/icon-3.png"
+								src="../assets/images/logo/icon-3.png"
 								alt="Logo"
 							/>
 							<img
 								class="retina-logo"
-								src="assets/images/logo/icon-3.png"
+								src="../assets/images/logo/icon-3.png"
 								alt="Retina Logo"
 							/>
 						</a>
@@ -92,11 +92,13 @@
 						aria-label="Top Menu"
 					>
 						<ul id="top-menu" class="menu">
-							<li class="has-children current-menu-parent">
-								<a href="#">Home</a>
+							<li>
+								<a href="../index.html">Home</a>
 							</li>
 							<li><a href="/sonograms/sonogram-list.html">Sonograms</a></li>
-							<li><a href="gender-reveal.html">Gender Reveal</a></li>
+							<li class="has-children current-menu-parent">
+								<a href="#">Gender Reveal</a>
+							</li>
 						</ul>
 					</nav>
 				</div>
@@ -108,35 +110,52 @@
 				<div id="content" class="site-content">
 					<div id="primary" class="content-area">
 						<main id="main" class="site-main" role="main">
-							<article class="page">
-								<div class="entry-content">
-									<div class="container m-t-35">
-										<div class="row">
-											<div class="col-sm-12 col-xl-9">
-												<div class="heading-block">
-													<h1 class="block-size-1">Follow Me On My Journey!</h1>
+							<div class="container">
+								<div class="row">
+									<div class="col-sm-12">
+										<article class="portfolio right-sidebar clearfix">
+											<div class="entry-content">
+												<div class="media-wrap">
+													<div
+														class="portfolio-media embed-responsive embed-responsive-16by9"
+													>
+														<iframe
+															width="455"
+															height="809"
+															src="https://www.youtube.com/embed/lCzy6_hpcwc"
+															title="Gender Reveal"
+															frameborder="0"
+															allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+															allowfullscreen
+														></iframe>
+													</div>
 												</div>
 											</div>
-										</div>
+											<!-- .entry-content -->
+
+											<header class="entry-header">
+												<div class="description">Gender Reveal Party</div>
+												<div class="entry-meta">
+													<div class="meta-desc">
+														<p>
+															Todo: Update with a description and had a section
+															for photos
+														</p>
+													</div>
+												</div>
+											</header>
+											<!-- .entry-header -->
+										</article>
+
+										<div><br /></div>
 									</div>
-									<div class="container m-t-25 m-b-100">
-										<div class="row">
-											<div class="col-sm-12" style="height: 25rem">
-												<img
-													class="retina-logo"
-													src="/assets/images/test.jpg"
-													alt="Retina Logo"
-												/>
-											</div>
-										</div>
-									</div>
-									<!--End container-->
 								</div>
-							</article>
+							</div>
 						</main>
 						<!-- #main -->
 					</div>
 					<!-- #primary -->
+
 					<a
 						id="gotoTop"
 						href="#"
@@ -184,6 +203,10 @@
 		<script
 			type="text/javascript"
 			src="assets/lib/swiper/js/swiper.min.js"
+		></script>
+		<script
+			type="text/javascript"
+			src="assets/js/vendor/jquery.sticky-kit.min.js"
 		></script>
 
 		<script type="text/javascript" src="assets/js/main.js"></script>
