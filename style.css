@@ -1071,7 +1071,7 @@ Footer
 	z-index: 9;
 	right: 30px;
 	bottom: 30px;
-	background: #e9e9e9;
+	background: #fe9a9b;
 	width: 30px;
 	text-align: center;
 	height: 30px;
@@ -4454,7 +4454,7 @@ Portfolio Section
 	-webkit-transition: all 0.4s;
 	-o-transition: all 0.4s;
 	transition: all 0.4s;
-	background-color: #1d1d1d;
+	background-color: #fe9a9b;
 }
 .cbp.cbp-caption-fadeIn.cbp-caption-ribbon
 	.cbp-l-caption-alignLeft
@@ -4510,7 +4510,7 @@ Portfolio Section
 	margin-top: 0;
 }
 .cbp .cbp-caption-activeWrap {
-	background-color: #1d1d1d;
+	background-color: #fe9a9b;
 }
 
 .cbp-l-grid-agency-title {
