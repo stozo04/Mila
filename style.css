@@ -4446,15 +4446,9 @@ Portfolio Section
 	padding-right: 15px;
 }
 .cbp.cbp-caption-fadeIn.cbp-caption-ribbon .cbp-caption-activeWrap {
-	width: 80%;
-	height: auto;
-	left: 0;
-	top: auto;
-	bottom: 15px;
-	-webkit-transition: all 0.4s;
-	-o-transition: all 0.4s;
-	transition: all 0.4s;
-	background-color: #fe9a9b;
+	width: 100% !important;
+	height: 100% !important;
+	position: absolute !important;
 }
 .cbp.cbp-caption-fadeIn.cbp-caption-ribbon
 	.cbp-l-caption-alignLeft
@@ -4489,9 +4483,12 @@ Portfolio Section
 	.cbp-caption-activeWrap,
 .cbp.cbp-caption-fadeIn.cbp-caption-ribbon.cbp-ribbon-alignCenter
 	.cbp-caption-activeWrap {
-	left: 13%;
+	/*width: 100%;
+	position: absolute;
+	z-index: 2;
+	 left: 13%;
 	bottom: auto;
-	top: 50%;
+	top: 50%; */
 }
 .cbp.cbp-caption-fadeIn.cbp-caption-ribbon.cbp-ribbon-alignCenter
 	.cbp-caption:hover
