@@ -10,6 +10,7 @@
 	font-size: 96px;
 	font-weight: 500;
 	font-family: 'Dancing Script';
+	padding-bottom: 1rem;
 }
 
 .home-h4 {
@@ -22,6 +23,7 @@
 	bottom: -1rem;
 	text-align: center;
 	font-size: 28px;
+	line-height: 1.5rem;
 }
 
 .home-centered-container {
@@ -29,30 +31,55 @@
 	justify-content: center;
 }
 
-.home-centered-container .large-block-size {
-	font-size: 65px;
-	line-height: 65px;
-	font-weight: 400;
-}
-
-.home-centered-container .medium-block-size {
-	font-size: 45px;
-	line-height: 65px;
-	font-weight: 400;
-}
-
 .mila-font-color {
 	color: #fe9a9b;
+}
+
+.heart-size {
+	font-size: 20px;
+}
+
+.flex-test {
+	display: flex;
+	flex-direction: row;
 }
 
 @media (max-width: 992px) {
 	.home-centered-container .home-h1 {
 		font-size: 25px;
 	}
+
+	.home-centered-container .home-h4 {
+		font-size: 15px;
+	}
+
+	.flex-test {
+		display: flex;
+		flex-direction: row;
+		column-gap: 20px;
+	}
+
+	.heart-size {
+		font-size: 10px;
+	}
 }
 @media (max-width: 767px) {
 	.home-centered-container .home-h1 {
-		font-size: 15px;
+		font-size: 25px;
+	}
+
+	.home-centered-container .home-h4 {
+		font-size: 10px;
+	}
+
+	.flex-test {
+		display: flex;
+		flex-direction: row;
+		column-gap: 20px;
+	}
+
+	.heart-size {
+		font-size: 10px;
 	}
 }
 
