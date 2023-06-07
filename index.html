@@ -21,13 +21,15 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="author" content="Gates Company" />
-	<meta name="keywords" content="Mila,Gates,Steven,Katerina">
 
 	<!-- Favicon -->
 	<link rel="icon" type="image/png" href="assets/images/favicon/favicon-16x16.png" />
 
 	<!-- Links -->
+	<link rel="stylesheet" href="index.css" />
 	<link href="https://fonts.googleapis.com/css?family=Cormorant+Upright:400,500,700&subset=latin,latin-ext"
+		rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,500,700&subset=latin,latin-ext"
 		rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" id="bootstrap-css" href="assets/lib/bootstrap/css/bootstrap.min.css" type="text/css"
 		media="all" />
@@ -68,6 +70,7 @@
 								<li><a href="baby-shower/dallas.html">Dallas</a></li>
 							</ul>
 						</li>
+						<li><a href="birthday.html">Birthday</a></li>
 						<li><a href="/blogs/blog-list.html">Blogs</a></li>
 					</ul>
 				</nav>
@@ -76,89 +79,28 @@
 		</header>
 		<!-- #masthead -->
 
-		<div class="site-content-contain">
-			<div id="content" class="site-content">
-				<div id="primary" class="content-area">
-					<main id="main" class="site-main" role="main">
-						<article class="page">
-							<div class="entry-content">
-								<div class="container m-t-35">
-									<div class="row">
-										<div class="col-sm-12 col-xl-9">
-											<div class="heading-block">
-												<h1 class="block-size-1">
-													<div id="countdown"></div>
-												</h1>
-											</div>
-										</div>
-									</div>
-								</div>
+		<div class="home-centered-container">
+			<h1 class="mila-font-color home-h1">Mila Rose Gates</h1>
 
-								<script>
-									// Set the date we're counting down to
-									var countDownDate = new Date('June 6, 2023').getTime();
-
-									// Update the count down every 1 second
-									var x = setInterval(function () {
-										// Get today's date and time
-										var now = new Date().getTime();
-
-										// Find the distance between now and the count down date
-										var distance = countDownDate - now;
-
-										// Time calculations for days, hours, minutes and seconds
-										var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-										var hours = Math.floor(
-											(distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-										);
-										var minutes = Math.floor(
-											(distance % (1000 * 60 * 60)) / (1000 * 60)
-										);
-										var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-										// Output the result in an element with id="demo"
-										document.getElementById('countdown').innerHTML =
-											'Coming in ' +
-											days +
-											'd ' +
-											hours +
-											'h ' +
-											minutes +
-											'm ' +
-											seconds +
-											's ';
-
-										// If the count down is over, write some text
-										if (distance < 0) {
-											clearInterval(x);
-											document.getElementById('countdown').innerHTML =
-												'I AM HERE!!';
-										}
-									}, 1000);
-								</script>
-								<div class="container m-t-25">
-									<div class="row">
-										<div class="col-sm-12">
-											<img class="retina-logo" src="/assets/images/baby-loading-400x400.png"
-												alt="Retina Logo" />
-										</div>
-									</div>
-								</div>
-								<!--End container-->
-							</div>
-						</article>
-					</main>
-					<!-- #main -->
-				</div>
-				<!-- #primary -->
-				<a id="gotoTop" href="#" class="scroll-top-link" data-easing="easeOutQuad" data-speed="700"><i
-						class="fa fa-angle-up"></i></a>
+			<div class="flex-test">
+				<h4 class="mila-font-color home-h4">
+					Born May 30, 2023
+					<a class="heart-size">&#10084;</a>
+					6 lbs. 2oz
+					<a class="heart-size">&#10084;</a>
+					18 in
+				</h4>
 			</div>
-			<!-- #content -->
+
+			<img style="display: inline-block; max-width: 100%; max-height: 80vh; object-fit: cover"
+				src="/assets/images/birthday/10.jpg" alt="" />
+
 		</div>
-		<!-- .site-content-contain -->
+		<!-- Page Wrapper Ends -->
+		<canvas />
 	</div>
-	<!-- Page Wrapper Ends -->
+	<!-- empty div to add padding to bottom -->
+	<div style="padding-bottom: 2vh"></div>
 	<footer id="footer" class="site-footer standard" role="contentinfo">
 		<div class="container">
 			<div class="site-info">
@@ -176,7 +118,69 @@
 	<script type="text/javascript" src="assets/lib/swiper/js/swiper.min.js"></script>
 
 	<script type="text/javascript" src="assets/js/main.js"></script>
+
+	<script src="assets/js/utils.js"></script>
+	<script src="assets/js/eventListeners.js"></script>
+	<script src="assets/js/particle.js"></script>
 	<!--  Scripts Ends -->
 </body>
 
 </html>
+<script>
+	const canvas = document.querySelector('canvas');
+	const c = canvas.getContext('2d');
+
+	const NUM_OF_PARTICLES = 1000;
+	let DEBUG_MODE = false;
+	let frameAdv = false;
+	let fallSpeed = 3;
+
+	const COLORS = ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'];
+
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+
+	let particles = [];
+
+	for (let i = 0; i < NUM_OF_PARTICLES; i++) {
+		particles.push(new Particle());
+	}
+
+	const animate = () => {
+		requestAnimationFrame(animate);
+		c.clearRect(0, 0, canvas.width, canvas.height);
+
+		// allow pressing 'f' key to pause and arrow key to advance
+		if (!DEBUG_MODE) {
+			updateParticles();
+		} else {
+			if (frameAdv === true) {
+				updateParticles();
+				frameAdv = false;
+			}
+		}
+		drawParticles();
+	};
+
+	const updateParticles = () => {
+		particles.forEach((p, idx) => {
+			if (p.y >= canvas.height) {
+				// remove particle when it goes off screen
+				particles.splice(idx, 1);
+				// add new particle
+				// particles.push(new Particle());
+			} else {
+				p.update();
+			}
+		});
+	};
+
+	const drawParticles = () => {
+		particles.forEach((p) => {
+			p.draw();
+		});
+	};
+
+	animate();
+
+</script>
