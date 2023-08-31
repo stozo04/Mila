@@ -5257,3 +5257,42 @@ Portfolio Listing
 }
 
 /*# sourceMappingURL=style.css.map */
+@media (max-width: 767px) {
+	.blog-bottom-fixed-height {
+		padding: 1rem;
+		/* min-height: 360px; */
+		max-width: 100px;
+	}
+
+	.blog-top-fixed-height {
+		/* min-height: 170px; */
+	}
+	.pricing {
+		width: 320px!important;
+	}
+}
+@media (max-width: 992px) {
+	.blog-bottom-fixed-height {
+		padding: 1rem;
+		/* min-height: 360px; */
+	}
+
+	.blog-top-fixed-height {
+		/* min-height: 170px; */
+	}
+	
+	.pricing {
+			width: 320px!important;
+	}
+}
+
+@media (min-width: 1024px) {
+	.blog-bottom-fixed-height {
+		padding: 1rem;
+		 min-height: 360px;
+	}
+
+	.blog-top-fixed-height {
+ 		 min-height: 170px; 
+	}
+}
