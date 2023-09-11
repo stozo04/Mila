@@ -1,0 +1,10 @@
+[
+    { "id": 1, "pids": [3], "gender": "male", "photo": "https://cdn.balkan.app/shared/m60/2.jpg", "name": "Zeph Daniels", "born": "1954-09-29" },
+    { "id": 2, "pids": [3], "gender": "male", "photo": "../assets/images/genealogy/andrei.jpg", "name": "Andrei Paletykin", "born": "1960-02-11" },
+    { "id": 3, "pids": [2], "gender": "female", "photo": "../assets/images/genealogy/larisa.jpg", "name": "Larisa Paletykina", "born": "1962-12-26", "city": "Moscow", "country": "ru" },
+    { "id": 4, "pids": [5], "photo": "../assets/images/genealogy/michael.jpg", "name": "Michael Gates", "born": "1960-02-22" },
+    { "id": 5, "pids": [4], "gender": "female", "photo": "../assets/images/genealogy/cindy.jpg", "name": "Cindy Walther", "born": "1963-10-27" },
+    { "id": 6, "mid": 2, "fid": 3, "pids": [7], "gender": "female", "photo": "../assets/images/genealogy/katya.jpg", "name": "Katerina Gates", "born": "1990-10-16" },
+    { "id": 7, "pids": [6], "mid": 5, "fid": 4, "gender": "male", "photo": "../assets/images/genealogy/steven.jpg", "name": "Steven Gates", "born": "1985-07-01" },
+    { "id": 8, "mid": 7, "fid": 6, "gender": "female", "photo": "../assets/images/genealogy/me.jpg", "name": "Me", "born": "2023-05-30" }
+]
