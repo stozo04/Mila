@@ -10,12 +10,9 @@
 
 
 function initializeFamilyTree() {
-    // Replace this URL with your Google Sheets API URL
-    const readSheetUrl = "https://sheets.googleapis.com/v4/spreadsheets/1gaBmikZmaleb0YRvLgbf962ZUv1q2X-lp_zeg50bu5E/values/Sheet1?key=AIzaSyAotgf8upKnjSPvZfxDoAZrAIV5LqTZyOc";
-    // Replace this URL with your Google Apps Script web app URL
-   // const writeSheetUrl = "https://script.google.com/macros/s/AKfycbwXj9wzU5lYDiNPgrbY9NckjuohMaEiu2eqji9XQBMgLhPIPZ947c028ZlqtWGGGugq/exec";
-   const writeSheetUrl = "https://script.google.com/macros/library/d/1HGl3KaypR06OTRCP9HiJh8_m_dSr9RnTmwlK2t06vkBRqf9cA7SozOTe/1"
-    fetch(readSheetUrl)
+     // Replace this URL with your Google Apps Script web app URL
+   const spreadSheetUrl = "https://script.google.com/macros/s/AKfycbxBben256dli_WFR8tJfthpwuyNCr1bw9I4GNmWtVuFtJObzUq-CUrhscESGG6HHVmE/exec"
+    fetch(spreadSheetUrl)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -23,27 +20,26 @@ function initializeFamilyTree() {
             return response.json();
         })
         .then(data => {
-            var rows = data.values; // your sheet data
-
-            // Transform your rows to the data format needed for FamilyTree
-            var transformedData = rows.slice(1).map(row => {
+            var transformedData = [];
+            for(var i=1; i < data.length; i++){
+                console.log(data[i]);
                 var obj = {};
-            
-                if (row[0]) obj.id = parseInt(row[0]);
-                if (row[1]) obj.mid = parseInt(row[1]);
-                if (row[2]) obj.fid = parseInt(row[2]);
-                if (row[3]) obj.pids = row[3].split(',').map(Number);
-                if (row[4]) obj.gender = row[4];
-                if (row[5]) obj.photo = row[5];
-                if (row[6]) obj.name = row[6];
-                if (row[7]) obj.born = row[7];
-                if (row[8]) obj.died = row[8];
-                if (row[9]) obj.city = row[9];
-                if (row[10]) obj.state = row[10];
-                if (row[11]) obj.country = row[11];
-            
-                return obj;
-            });
+                if (data[i][0]) obj.id = parseInt(data[i][0]);
+                if (data[i][1]) obj.mid = parseInt(data[i][1]);
+                if (data[i][2]) obj.fid = parseInt(data[i][2]);
+                if (data[i][3]) obj.pids = [data[i][3]];
+                if (data[i][4]) obj.gender = data[i][4];
+                if (data[i][5]) obj.photo = data[i][5];
+                if (data[i][6]) obj.name = data[i][6];
+                if (data[i][7]) obj.born = data[i][7];
+                if (data[i][8]) obj.died = data[i][8];
+                if (data[i][9]) obj.city = data[i][9];
+                if (data[i][10]) obj.state = data[i][10];
+                if (data[i][11]) obj.country = data[i][11];
+
+                transformedData.push(obj);
+            }
+            console.log('transformedData: ', transformedData)
 
             // Initialize the FamilyTree
             var family = new FamilyTree(document.getElementById('tree'), {
@@ -71,10 +67,10 @@ function initializeFamilyTree() {
                         { type: 'textbox', label: 'Full Name', binding: 'name', vlidators: { required: 'Name Is required' } },
                         [
                             { type: 'date', label: 'Date Of Birth', binding: 'born' },
-                            { type: 'date', label: 'Death Of Date', binding: 'deathDate' }
+                            { type: 'date', label: 'Death Of Date', binding: 'died' }
                         ],
                         [
-                            { type: 'select', options: [{ value: 'bg', text: 'Bulgaria' }, { value: 'ru', text: 'Russia' }, { value: 'gr', text: 'Greece' }], label: 'Country', binding: 'country' },
+                            { type: 'select', options: [{ value: 'usa', text: 'USA' }, { value: 'ru', text: 'Russia' }, { value: 'by', text: 'Belarus' }], label: 'Country', binding: 'country' },
                             { type: 'textbox', label: 'City', binding: 'city' },
                         ],
                         { type: 'textbox', label: 'Photo Url', binding: 'photo', btn: 'Upload' },
@@ -87,26 +83,42 @@ function initializeFamilyTree() {
                 // console.log('args: ', args)
                 if (args.name == 'born') {
                     var date = new Date(args.value);
-                    args.value = date.toLocaleDateString();
+                    args.value = date.toISOString().split("T")[0];
                 }
             });
 
             family.onUpdateNode((args) => {
-                if (args.updateNodesData.length > 0) {
-                    // Send updated data to Google Sheets
-                    const updatedData = args.updateNodesData[0]; // Assuming one update at a time
+                try{
+                    if (args.updateNodesData.length > 0) {
+                        // Send updated data to Google Sheets
+                        const updatedData = args.updateNodesData[0]; // Assuming one update at a time
+                        console.log('updatedData: ', updatedData);
+                        const formData = new FormData();
+                        formData.append("id", "99");
+                        formData.append("mid", updatedData.mid);
+                        formData.append("fid", updatedData.fid);
+                        formData.append("pids", updatedData.pids);
+                        formData.append("gender", updatedData.gender);
+                        formData.append("photo", updatedData.photo);
+                        formData.append("name", updatedData.name);
+                        formData.append("born", updatedData.born);
+                        formData.append("died", updatedData.deathDate);
+                        formData.append("city", updatedData.city);
+                        //formData.append("state", updatedData.state);
+                        formData.append("country", updatedData.country);
+                        fetch(spreadSheetUrl, {
+                            method: 'POST',
+                            body: formData,
+                        })
+                        .then(response => response.json())
+                        .then(data => console.log(data))
+                        .catch(error => console.error('Error:', error));
+                    }
 
-                    fetch(writeSheetUrl, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(updatedData),
-                    })
-                    .then(response => response.json())
-                    .then(data => console.log(data))
-                    .catch(error => console.error('Error:', error));
-                }
+                } catch (e) {
+                    console.log('Errors:', e.message)
+                  }
+                
             });
 
             // Load the data into the family tree
