@@ -22,7 +22,7 @@ function initializeFamilyTree() {
         .then(data => {
             var transformedData = [];
             for(var i=1; i < data.length; i++){
-                console.log(data[i]);
+                // console.log(data[i]);
                 var obj = {};
                 if (data[i][0]) obj.id = parseInt(data[i][0]);
                 if (data[i][1]) obj.mid = parseInt(data[i][1]);
@@ -31,7 +31,15 @@ function initializeFamilyTree() {
                 if (data[i][4]) obj.gender = data[i][4];
                 if (data[i][5]) obj.photo = data[i][5];
                 if (data[i][6]) obj.name = data[i][6];
-                if (data[i][7]) obj.born = data[i][7];
+                if (data[i][7]){
+                    var date = new Date(Date.parse(data[i][7]));
+                    var year = date.getFullYear();
+                    var month = date.getMonth() + 1;
+                    var day = date.getDate();
+                    let addZero = (el) => ((el.toString().length == 1) ? '0' : '') + el.toString();
+                    var test =  year + "-" + addZero(month) + "-" +  addZero(day)
+                    obj.born = test;
+                } 
                 if (data[i][8]) obj.died = data[i][8];
                 if (data[i][9]) obj.city = data[i][9];
                 if (data[i][10]) obj.state = data[i][10];
@@ -39,7 +47,7 @@ function initializeFamilyTree() {
 
                 transformedData.push(obj);
             }
-            console.log('transformedData: ', transformedData)
+            // console.log('transformedData: ', transformedData)
 
             // Initialize the FamilyTree
             var family = new FamilyTree(document.getElementById('tree'), {
@@ -64,14 +72,15 @@ function initializeFamilyTree() {
                         pdf: null
                     },
                     elements: [
-                        { type: 'textbox', label: 'Full Name', binding: 'name', vlidators: { required: 'Name Is required' } },
+                        { type: 'textbox', label: 'Name', binding: 'name', vlidators: { required: 'Name Is required' } },
                         [
-                            { type: 'date', label: 'Date Of Birth', binding: 'born' },
-                            { type: 'date', label: 'Death Of Date', binding: 'died' }
+                            { type: 'date', label: 'Date of Birth', binding: 'born' },
+                            { type: 'date', label: 'Date of Death', binding: 'died' }
                         ],
                         [
-                            { type: 'select', options: [{ value: 'usa', text: 'USA' }, { value: 'ru', text: 'Russia' }, { value: 'by', text: 'Belarus' }], label: 'Country', binding: 'country' },
-                            { type: 'textbox', label: 'City', binding: 'city' },
+                            { type: 'textbox', label: 'City (born)', binding: 'city' },
+                            { type: 'textbox', label: 'State (born)', binding: 'state' },
+                            { type: 'select', options: [ { value: 'by', text: 'Belarus' }, { value: 'ru', text: 'Russia' }, { value: 'usa', text: 'USA' }], label: 'Country (born)', binding: 'country' },
                         ],
                         { type: 'textbox', label: 'Photo Url', binding: 'photo', btn: 'Upload' },
                     ]
@@ -79,11 +88,17 @@ function initializeFamilyTree() {
             });
 
             family.on('field', function (sender, args) {
-                // console.log('sender: ', sender)
-                // console.log('args: ', args)
                 if (args.name == 'born') {
-                    var date = new Date(args.value);
-                    args.value = date.toISOString().split("T")[0];
+                    var date = new Date(Date.parse(args.value));
+                    args.value = date.toLocaleDateString();
+
+                    var date = new Date(Date.parse(args.value));
+                    var year = date.getFullYear();
+                    var month = date.getMonth() + 1;
+                    var day = date.getDate() + 1;
+                    let addZero = (el) => ((el.toString().length == 1) ? '0' : '') + el.toString();   
+                    var test = addZero(month) + "/" +  addZero(day) + "/" + year;
+                    args.value = test;
                 }
             });
 
@@ -92,9 +107,8 @@ function initializeFamilyTree() {
                     if (args.updateNodesData.length > 0) {
                         // Send updated data to Google Sheets
                         const updatedData = args.updateNodesData[0]; // Assuming one update at a time
-                        console.log('updatedData: ', updatedData);
+                        // console.log('updatedData: ', updatedData);
                         const formData = new FormData();
-                        formData.append("id", "99");
                         formData.append("mid", updatedData.mid);
                         formData.append("fid", updatedData.fid);
                         formData.append("pids", updatedData.pids);
@@ -104,7 +118,7 @@ function initializeFamilyTree() {
                         formData.append("born", updatedData.born);
                         formData.append("died", updatedData.deathDate);
                         formData.append("city", updatedData.city);
-                        //formData.append("state", updatedData.state);
+                        formData.append("state", updatedData.state);
                         formData.append("country", updatedData.country);
                         fetch(spreadSheetUrl, {
                             method: 'POST',
@@ -122,7 +136,7 @@ function initializeFamilyTree() {
             });
 
             // Load the data into the family tree
-            console.log('transformedData: ', transformedData)
+            // console.log('transformedData: ', transformedData)
             family.load(transformedData);
         })
         .catch(error => {
