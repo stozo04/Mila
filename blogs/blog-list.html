@@ -91,62 +91,84 @@
 								<div class="container m-t-25 m-b-100">
 									<div class="row"> 
 										<div class="col-sm-12">
-											<div class="portfolio-wrap">
-												<div id="portfolio-container-grid" class="container m-t-35" data-loadmoreaction="click" data-loadnoofitems="3" data-defaultfilter="*">
+											<div class="grid">
+												<div class="clearfix">
+													<div id="js-filters-blog-posts" class="cbp-l-filters-list cbp-l-filters-left">
+														<div data-filter="*" class="cbp-filter-item-active cbp-filter-item cbp-l-filters-list-first">All (<div class="cbp-filter-counter"></div>)</div>
+														<div data-filter=".2023" class="cbp-filter-item">2023 (<div class="cbp-filter-counter"></div>)</div>
+														<div data-filter=".2024" class="cbp-filter-item cbp-l-filters-list-last">2024 (<div class="cbp-filter-counter"></div>)</div>
+													</div>
+								
+													<div class="cbp-search cbp-l-filters-right">
+														<input id="js-search-blog-posts" type="text" placeholder="Search by title" autocomplete="off" data-search=".cbp-l-grid-blog-title" class="cbp-search-input">
+														<div class="cbp-search-icon"></div>
+														<div class="cbp-search-nothing">No results match for <i>{{query}}</i></div>
+													</div>
+												</div>
+												<div id="js-grid-blog-posts" class="cbp">
 													<!-- Blog 26: 4 Months  -->
-													<div class="row m-t-20 cbp-item" style="padding-top: 1rem;">                                    
-														<div class="pricing" style="width: 90%!important;">
-															<h3>Four months letter</h3>
-															<div class="pricing-price blog-top-fixed-height">
-																September 30, 2023
+													<div class="cbp-item 2023">
+														<a href="./blog-four-months.html" class="cbp-caption">
+															<div class="cbp-caption-defaultWrap">
+																<img src="../assets/images/birthday/four-months/1.jpg" alt="">
 															</div>
-															<div class="blog-bottom-fixed-height">
-
-																<div class="btn-container" style="margin-top: 2rem;">
-																	<a href="./blog-four-months.html">View Blog</a>
+															<div class="cbp-caption-activeWrap">
+																<div class="cbp-l-caption-alignCenter">
+																	<div class="cbp-l-caption-body">
+																		<div class="cbp-l-caption-text">VIEW POST</div>
+																	</div>
 																</div>
 															</div>
-														</div>                                        
+														</a>
+														<a href="./blog-four-months.html" class="cbp-l-grid-blog-title">Four Month Letter</a>
+														<div class="cbp-l-grid-blog-date">September 30, 2023</div>
+														<div class="cbp-l-grid-blog-split"></div>
 													</div>
 													<!-- Blog 25: Rolling Over  -->
-													<div class="row m-t-20 cbp-item" style="padding-top: 1rem;">                                    
-														<div class="pricing" style="width: 90%!important;">
-															<h3>Learning to roll over</h3>
-															<div class="pricing-price blog-top-fixed-height">
-																September 24, 2023
+													<div class="cbp-item 2023">
+														<a href="./blog-rolling-over.html" class="cbp-caption">
+															<div class="cbp-caption-defaultWrap">
+																<img src="../assets/images/blog-photos/blog-rolling-over.jpg" alt="">
 															</div>
-															<div class="blog-bottom-fixed-height">
-																<div class="btn-container" style="margin-top: 2rem;">
-																	<a href="./blog-rolling-over.html">View Blog</a>
+															<div class="cbp-caption-activeWrap">
+																<div class="cbp-l-caption-alignCenter">
+																	<div class="cbp-l-caption-body">
+																		<div class="cbp-l-caption-text">VIEW POST</div>
+																	</div>
 																</div>
 															</div>
-														</div>                                        
+														</a>
+														<a href="./blog-rolling-over.html" class="cbp-l-grid-blog-title">Rolling Over</a>
+														<div class="cbp-l-grid-blog-date">September 24, 2023</div>
+														<div class="cbp-l-grid-blog-split"></div>
 													</div>
 													<!-- Blog 24: 3 Months  -->
-													<div class="row m-t-20 cbp-item" style="padding-top: 1rem;">                                    
-														<div class="pricing" style="width: 90%!important;">
-															<h3>Three months letter</h3>
-															<div class="pricing-price blog-top-fixed-height">
-																August 30, 2023
+													<div class="cbp-item 2023">
+														<a href="./blog-three-months.html" class="cbp-caption">
+															<div class="cbp-caption-defaultWrap">
+																<img src="../assets/images/birthday/three-months/2.jpg" alt="">
 															</div>
-															<div class="blog-bottom-fixed-height">
-
-																<div class="btn-container" style="margin-top: 2rem;">
-																	<a href="./blog-three-months.html">View Blog</a>
+															<div class="cbp-caption-activeWrap">
+																<div class="cbp-l-caption-alignCenter">
+																	<div class="cbp-l-caption-body">
+																		<div class="cbp-l-caption-text">VIEW POST</div>
+																	</div>
 																</div>
 															</div>
-														</div>                                        
+														</a>
+														<a href="./blog-three-months.html" class="cbp-l-grid-blog-title">Three Month Letter</a>
+														<div class="cbp-l-grid-blog-date">August 30, 2023</div>
+														<div class="cbp-l-grid-blog-split"></div>
 													</div>
 												</div>
-												 <!-- Portfolio Load More -->                                                    
-												 <div id="more-projects" class="text-center load-more btn-container">
-													<a href="blog-list-load-more.html" class="cbp-l-loadMore-link" rel="nofollow">
-														<span class="cbp-l-loadMore-defaultText">LOAD MORE</span>
+												<div id="js-loadMore-blogs" class="cbp-l-loadMore-button">
+													<a href="./blog-list-load-more.html" class="cbp-l-loadMore-link" rel="nofollow">
+														<span class="cbp-l-loadMore-defaultText">LOAD MORE (<span class="cbp-l-loadMore-loadItems">23</span>)</span>
 														<span class="cbp-l-loadMore-loadingText">LOADING...</span>
-														<span class="cbp-l-loadMore-noMoreLoading">MORE COMING SOON!</span>
+														<span class="cbp-l-loadMore-noMoreLoading">NO MORE WORKS</span>
 													</a>
 												</div>
-											</div>    
+											</div>
 										</div>
 									</div>
 								</div>
