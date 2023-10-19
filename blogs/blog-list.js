@@ -7,7 +7,7 @@
         filters: '#js-filters-blog-posts',
         search: '#js-search-blog-posts',
         layoutMode: 'grid',
-        defaultFilter: '*',
+        defaultFilter: '.new',
         animationType: '3dflip', // Options: fadeOut, quicksand, boxShadow, bounceLeft, bounceTop, bounceBottom, moveLeft, slideLeft, fadeOutTop, sequentially, skew slideDelay 3d Flip, rotateSides flipOutDelay, flipOut unfold foldLeft, scaleDown scaleSides, frontRow flipBottom, rotateRoom
         gapHorizontal: 35,
         gapVertical: 30,
@@ -41,13 +41,13 @@
         caption: 'overlayBottomPush', // Options: revealBottom, pushTop, pushDown, revealTop, moveRight, moveLeft, overlayBottomPush, overlayBottom, overlayBottomReveal, overlayBottomAlong, overlayRightAlong, minimal, fadeIn, zoom
         displayType: 'sequentially', // Options: default, fadeIn, lazyLoading, fadeInToTop, sequentially, bottomToTop, 
         displayTypeSpeed: 80,
-        plugins: {
-            loadMore: {
-                element: '#js-loadMore-blogs',
-                action: 'click',
-                loadItems: 3,
-            }
-        },
+        // plugins: {
+        //     loadMore: {
+        //         element: '#js-loadMore-blogs',
+        //         action: 'click',
+        //         loadItems: 3,
+        //     }
+        // },
     });
 })(jQuery, window, document);
 
