@@ -5296,3 +5296,9 @@ Portfolio Listing
  		 min-height: 170px; 
 	}
 }
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
